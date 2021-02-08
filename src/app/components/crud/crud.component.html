@@ -1,0 +1,344 @@
+<p-toast></p-toast>
+
+<div class="container">
+    <div class="row">
+        <form [formGroup]="personaForm">
+            <div class="row ">
+                <div class="col-4">
+
+                    <b> <label for="exampleInputName1" class="form-label">Primer Nombre</label></b>
+                    <input type="text" class="form-control" formControlName="primerNombre" [ngClass]="{ 'is-invalid': submitted && f.primerNombre.errors}">
+                    <div *ngIf="submitted && f.primerNombre.errors" class="invalid-feedback">
+                        <div *ngIf="f.primerNombre.errors.required"> Por favor ingresa, tu primer nombre</div>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <b><label for="exampleInputPassword1" class="form-label">Segundo Nombre</label></b>
+                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="segundoNombre">
+                </div>
+                <div class="col-4">
+                    <b> <label for="exampleInputPassword1" class="form-label">Primer Apellido</label></b>
+                    <input type="text" class="form-control" id="exampleInputPassword1" formControlName="primerApellido" [ngClass]="{ 'is-invalid': submitted && f.primerApellido.errors}">
+                    <div *ngIf="submitted && f.primerApellido.errors" class="invalid-feedback">
+                        <div *ngIf="f.primerApellido.errors.required"> Por favor ingresa, tu primer Apellido</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <b> <label for="exampleInputPassword1" class="form-label">Segundo Apellido</label></b>
+                    <input class="form-control" id="exampleInputPassword1" formControlName="segundoApellido">
+                </div>
+                <div class="col-4">
+                    <b> <label for="exampleInputPassword1" class="form-label">Identificacion</label></b>
+                    <button type="button" class="btn btn-outline-secondary form-control" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors}" [ngClass]="{ 'is-invalid': submitted && f.fechaExpedicion.errors}" data-bs-toggle="modal" data-bs-target="#identificacionPersona">Identificacion</button>
+                    <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback">
+                        <div *ngIf="f.identificacion.errors.required"> Por favor ingresa, numero identificacion</div>
+                    </div>
+                    <div *ngIf="submitted && f.fechaExpedicion.errors" class="invalid-feedback">
+                        <div *ngIf="f.fechaExpedicion.errors.required"> Por favor ingresa, fecha expedicion</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <b><label for="exampleInputPassword1" class="form-label">Codigo Interno</label></b>
+                    <input class="form-control" id="exampleInputPassword1" formControlName="codigoInterno">
+                </div>
+                <div class="col-4">
+                    <b>   <label for="exampleInputPassword1" class="form-label">Sexo</label></b>
+                    <select name="OS" class="form-control" formControlName="sexo">
+                        <option value="Masculino">Masculino</option> 
+                        <option value="Femenino">Femenino</option>                         
+                        <option value="Otr0">Otro</option>                             
+                     </select>
+                </div>
+                <div class="col-4">
+                    <b><label for="exampleInputPassword1" class="form-label">Correo Electronico</label></b>
+                    <input class="form-control" id="exampleInputPassword1" [ngClass]="{ 'is-invalid': submitted && f.correoElectronico.errors}" formControlName="correoElectronico">
+                    <div *ngIf="submitted && f.correoElectronico.errors" class="invalid-feedback">
+                        <div *ngIf="f.correoElectronico.errors.required"> Por favor ingresa, correo electronico</div>
+                        <div *ngIf="f.correoElectronico.errors.email">No es un correo valido</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <b> <label for="exampleInputPassword1" class="form-label">Fecha Nacimiento</label></b>
+                    <input type="date" value="2021-02-08" min="1900-01-01" max="2023-12-31" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fechaNacimiento.errors}" id="exampleInputPassword1" formControlName="fechaNacimiento">
+                    <div *ngIf="submitted && f.fechaNacimiento.errors" class="invalid-feedback">
+                        <div *ngIf="f.fechaNacimiento.errors.required"> Por favor ingresa, fecha nacimiento</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <b> <label for="exampleInputPassword1" class="form-label">EPS</label></b>
+                    <button type="button" class="btn btn-outline-secondary form-control" [ngClass]="{ 'is-invalid': submitted && f.entidad.errors}" [ngClass]="{ 'is-invalid': submitted && f.fechaIngreso.errors}" data-bs-toggle="modal" data-bs-target="#personaEps">EPS</button>
+                    <div *ngIf="submitted && f.entidad.errors" class="invalid-feedback">
+                        <div *ngIf="f.entidad.errors.required"> Por favor ingresa, datos Eps</div>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <b>  <label for="exampleInputPassword1" class="form-label">Estado Civil</label></b>
+                    <br>
+                    <input type="radio" formControlName="estadoCivil" value="Soltero">
+                    <label for="male" class="form-label">Soltero</label><br>
+                    <input type="radio" formControlName="estadoCivil" value="Casado">
+                    <label for="male">Casado</label><br>
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn btn-success" (click)="Guardar()">Guardar</button>
+        </form>
+    </div>
+</div>
+<hr>
+<div class="container mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Codigo Interno</th>
+                <th scope="col">Identificacion</th>
+                <th scope="col">EPS</th>
+                <th scope="col">Estado Civil</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listaPersonas ; let indice = index">
+                <th scope="row">{{indice+1}}</th>
+                <td>{{item.primerNombre}} {{item.segundoNombre}} {{item.primerApellido}} {{item.segundoApellido}}</td>
+                <td>{{item.codigoInterno}}</td>
+                <td><button type="button" class="btn btn-outline-dark" (click)="CargarEditar(item)" data-bs-toggle="modal" data-bs-target="#identificacionPersonaLista">Identificacion</button></td>
+                <td><button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#personaEpslist">EPS</button></td>
+                <td>{{item.estadoCivil}}</td>
+                <td>{{item.sexo}}</td>
+                <td><button type="button" class="btn btn-warning" (click)="CargarEditar(item)" data-bs-toggle="modal" data-bs-target="#editarPersona">Editar</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="Delete(item.id)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<!-- Modal  creacion persona identificacion -->
+<div class="modal fade" id="identificacionPersona" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Identificacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="personaForm">
+                    <div class="row ">
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Numero Identificacion</label>
+                            <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors}" formControlName="identificacion">
+                            <div *ngIf="submitted && f.identificacionrors" class="invalid-feedback">
+                                <div *ngIf="f.identificacion.errors.required"> Por favor ingresa, fecha expedicion</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Fecha Expedicion</label>
+                            <input type="date" value="2021-02-08" min="1900-01-01" max="2023-12-31" [ngClass]="{ 'is-invalid': submitted && f.fechaExpedicion.errors}" class="form-control" id="exampleInputPassword1" formControlName="fechaExpedicion">
+                            <div *ngIf="submitted && f.fechaExpedicion.errors" class="invalid-feedback">
+                                <div *ngIf="f.fechaExpedicion.errors.required"> Por favor ingresa, fecha expedicion</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Lugar Expedicion</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lugarExpedicion">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Tipo Documento</label>
+                            <select name="OS" class="form-control" formControlName="tipo">
+                                <option value="Cédula de Ciudadanía">Cédula</option> 
+                                <option value="Tarjeta de Identidad">Tarjeta de Identidad</option> 
+                                <option value="Cédula de Extranjería">Cédula de Extranjería</option>   
+                                <option value="Otra">Otra</option>                             
+                             </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal  lista persona identificacion -->
+<div class="modal fade" id="identificacionPersonaLista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Identificacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="personaEdit">
+                    <div class="row ">
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Numero Identificacion</label>
+                            <input type="text" class="form-control" formControlName="identificacion" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Fecha Expedicion</label>
+                            <input type="text" class="form-control" formControlName="fechaExpedicion" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Lugar Expedicion</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="lugarExpedicion" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Tipo Documento</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="tipo" readonly="readonly">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal  creacion persona eps -->
+<div class="modal fade" id="personaEps" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">EPS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="personaForm">
+                    <div class="row ">
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Entidad</label>
+                            <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.entidad.errors}" formControlName="entidad">
+                            <div *ngIf="submitted && f.entidad.errors" class="invalid-feedback">
+                                <div *ngIf="f.entidad.errors.required"> Por favor ingresa, nombre Eps</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Fecha Ingreso</label>
+                            <input type="date" value="2021-02-08" min="1900-01-01" max="2023-12-31" [ngClass]="{ 'is-invalid': submitted && f.fechaIngreso.errors}" class="form-control" id="exampleInputPassword1" formControlName="fechaIngreso">
+                            <div *ngIf="submitted && f.fechaIngreso.errors" class="invalid-feedback">
+                                <div *ngIf="f.fechaIngreso.errors.required"> Por favor ingresa, fecha ingreso</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Estado Afiliacion</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="estadoAfiliacion">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal  lista persona eps -->
+<div class="modal fade" id="personaEpslist" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">EPS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="personaEdit">
+                    <div class="row ">
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Entidad</label>
+                            <input type="text" class="form-control" formControlName="entidad" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Fecha Ingreso</label>
+                            <input type="text" class="form-control" formControlName="fechaIngreso" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Estado Afiliacion</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" formControlName="estadoAfiliacion" readonly="readonly">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal  Editar persona  -->
+<div class="modal fade" id="editarPersona" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Editar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="personaEdit">
+                    <div class="row ">
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Primer Nombre</label>
+                            <input type="text" class="form-control" formControlName="primerNombre">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Segundo Nombre</label>
+                            <input type="text" class="form-control" formControlName="segundoNombre">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Primer Apellido</label>
+                            <input type="text" class="form-control" formControlName="primerApellido">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Segundo Apellido</label>
+                            <input type="text" class="form-control" formControlName="segundoApellido">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputName1" class="form-label">Codigo Interno</label>
+                            <input type="text" class="form-control" formControlName="codigoInterno">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Sexo</label>
+                            <select name="OS" class="form-control" formControlName="sexo">
+                        <option value="Masculino">Masculino</option> 
+                        <option value="Femenino">Femenino</option>                         
+                        <option value="Otro">Otro</option>                             
+                     </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Estado Civil</label>
+                            <br>
+                            <input type="radio" formControlName="estadoCivil" value="Soltero">
+                            <label for="male" class="form-label">Soltero</label><br>
+                            <input type="radio" formControlName="estadoCivil" value="Casado">
+                            <label for="male">Casado</label><br>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="Editar()" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
